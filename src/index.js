@@ -1,16 +1,17 @@
+document.addEventListener('DOMContentLoaded', function() {
 const holes = document.querySelectorAll('.hole');
 const moles = document.querySelectorAll('.mole');
 const startButton = document.querySelector('#start');
 // TODO: Add the missing query selectors:
-const score = document.querySelector("#score"); // Use querySelector() to get the score element
-console.log(score);
+const score = document.querySelector('#score'); // Use querySelector() to get the score element
+//console.log(score);
 const timerDisplay = document.querySelector('#timer'); // use querySelector() to get the timer element.
 
 let time = 0;
 let timer;
 let lastHole = 0;
 let points = 0;
-let difficulty = "hard";
+let difficulty = "easy";
 
 /**
  * Generates a random integer within a range.
@@ -194,7 +195,10 @@ function clearScore() {
 function updateTimer() {
   // TODO: Write your code here.
   // hint: this code is provided to you in the instructions.
-  
+  if (time > 0){
+    time -= 1;
+    timerDisplay.textContent = time;
+  }
   return time;
 }
 
@@ -206,7 +210,7 @@ function updateTimer() {
 */
 function startTimer() {
   // TODO: Write your code here
-  // timer = setInterval(updateTimer, 1000);
+   timer = setInterval(updateTimer, 1000);
   return timer;
 }
 
@@ -270,11 +274,19 @@ function stopGame(){
 function startGame(){
   setDuration(10);
   showUp();
+  setEventListeners();
+  startTimer();
+  clearScore();
   return "game started";
 }
-
+// addEventListener("DOMContentLoaded", (event) => {
+//   startButton.addEventListener("click", startGame);
+// });
 startButton.addEventListener("click", startGame);
-
+// document.addEventListener('DOMContentLoaded', function() {
+//   const startButton = document.getElementById('start');
+//   startButton.addEventListener('click', startGame);
+// });
 
 // Please do not modify the code below.
 // Used for testing purposes.
@@ -295,3 +307,4 @@ window.time = time;
 window.setDuration = setDuration;
 window.toggleVisibility = toggleVisibility;
 window.setEventListeners = setEventListeners;
+});
