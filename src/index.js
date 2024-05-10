@@ -6,7 +6,8 @@ const startButton = document.querySelector('#start');
 const score = document.querySelector('#score'); // Use querySelector() to get the score element
 //console.log(score);
 const timerDisplay = document.querySelector('#timer'); // use querySelector() to get the timer element.
-
+const audio = document.getElementById('audioClip1'); // Hail to the chief audio
+const audioHit = document.getElementById('audioClip2'); //audio clip for whe ngets hit
 let time = 0;
 let timer;
 let lastHole = 0;
@@ -224,6 +225,8 @@ function startTimer() {
 */
 function whack(event) {
   // TODO: Write your code here.
+  // play the hit audio
+  audioHit.play();
   // call updateScore()
   updateScore();
   return points;
@@ -272,7 +275,8 @@ function stopGame(){
 *
 */
 function startGame(){
-  setDuration(10);
+  setDuration(20);
+  audio.play();
   showUp();
   setEventListeners();
   startTimer();
